@@ -4,6 +4,10 @@
     https://api.github.com/users/<your name>
 */
 
+
+
+
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -28,7 +32,8 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -58,3 +63,109 @@ const followersArray = [];
     luishrd
     bigknell
 */
+/* *******************************************************************
+first attempt wrong
+
+//  import axios from 'axios';
+// const entryPoint = document.querySelector('div.cards');
+// axios.get(`https://api.github.com/users/mcmillanj`)
+// .then(response => {
+//   const card = githubCard(response.data)
+//   const dom = document.querySelector(`.cards`)
+//   document.appendChild(gitHubCardMaker(card)
+// })
+// .catch(err => {
+//   console.log(error);
+// })
+
+
+************************************************************************
+*/
+
+import axios from 'axios'
+
+
+
+const gitHudInfo = (user) => {
+  axios.get(`https://api.github.com/users/${user}`)
+  .then(({data})=> {
+   const entryPoint = document.querySelector('.cards') 
+   entryPoint.appendChild(gitHubCardMarker(data));
+ })
+   .catch(error => console.log(error));
+}
+
+const followersArray = [
+  'jlbevans',
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'
+];
+
+followersArray.forEach(user => {
+  gitHudInfo(user)
+})
+/***********************************************************************************
+ / const followersArray = [];
+// const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+// followersArray.forEach(user => {
+//   axios.get(`https://api.github.com/users/${user}`)
+//         .then(response => {
+//           for(let i =0; i < response.data.length; i++){
+//           let card = gitHubCardMarker(response.data[i])
+//             entryPoint.appendChild(card);
+//           }
+//         })
+//         .catch(error => {
+//           console.log(error)
+//         })
+// }) 
+ * 
+  
+ **/
+function gitHubCardMarker({ name, avatar_url, login, location, gitHub, url, followers, following, bio})
+ {
+
+  const user = document.createElement('div')
+  const userProfile = document.createElement('img')
+  const cardInfo = document.createElement('div')
+  const Name = document.createElement('h3')
+  const uLogin = document.createElement('p')
+  const uLocation = document.createElement('p')
+  const id = document.createElement('p')
+  const address = document.createElement('a')
+  const userFollowers = document.createElement('p')
+  const userFollowing = document.createElement('p')
+  const userBio = document.createElement('p')
+
+  
+
+   userProfile.setAttribute('src', avatar_url)
+  user.classList.add('card')
+  cardInfo.classList.add('card-info')
+  Name.classList.add('name')
+  uLogin.classList.add('user')
+  Name.textContent = name;
+  uLogin.textContent = login;
+  uLocation.textContent =location
+  id.textContent = gitHub
+  address.textContent = url
+  userFollowers.textContent = followers
+  userFollowing.textContent = following
+  userBio.textContent = bio
+  
+  user.appendChild(userProfile)
+  user.appendChild(cardInfo)
+  cardInfo.appendChild(uLogin)
+  cardInfo.appendChild(Name)
+  cardInfo.appendChild(uLocation)
+  cardInfo.appendChild(id)
+  cardInfo.appendChild(userFollowers)
+  cardInfo.appendChild(userFollowing)
+  cardInfo.appendChild(userBio)
+  id.appendChild(address)
+  
+  return user
+}
