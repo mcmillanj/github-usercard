@@ -90,7 +90,7 @@ const gitHudInfo = (user) => {
   axios.get(`https://api.github.com/users/${user}`)
   .then(({data})=> {
    const entryPoint = document.querySelector('.cards') 
-   entryPoint.appendChild(gitHubCardMarker(data));
+   entryPoint.appendChild(gitHubCardMarker({data}));
  })
    .catch(error => console.log(error));
 }
@@ -125,9 +125,9 @@ followersArray.forEach(user => {
  * 
   
  **/
-function gitHubCardMarker({ name, avatar_url, login, location, gitHub, url, followers, following, bio})
+function gitHubCardMarker({data})
  {
-    
+  
   const user = document.createElement('div')
   const userProfile = document.createElement('img')
   const cardInfo = document.createElement('div')
@@ -139,22 +139,22 @@ function gitHubCardMarker({ name, avatar_url, login, location, gitHub, url, foll
   const uFollowers = document.createElement('p')
   const uFollowing = document.createElement('p')
   const userBio = document.createElement('p')
-
   
-
-   userProfile.setAttribute('src', avatar_url)
+  
+ 
+   
+  
   user.classList.add('card')
   cardInfo.classList.add('card-info')
   Name.classList.add('name')
   uLogin.classList.add('user')
-  Name.textContent = name;
-  uLogin.textContent = login;
-  uLocation.textContent =location
-  id.textContent = gitHub
-  address.textContent = url
-  uFollowers.textContent = followers
-  uFollowing.textContent = following
-  userBio.textContent = bio
+  Name.textContent = `${data.name}`;
+  uLogin.textContent = `${data.login}`;
+  uLocation.textContent = `Location: ${data.location}`;  
+  address.textContent = `Profile:${data.url}`;
+  uFollowers.textContent = `Followers: ${data.followers}`;
+  uFollowing.textContent = `Following: ${data.following}`;
+  userBio.textContent = `Bio: ${data.bio}`;
   
   user.appendChild(userProfile)
   user.appendChild(cardInfo)
