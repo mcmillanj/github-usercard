@@ -89,7 +89,7 @@ import axios from 'axios'
 const gitHudInfo = (user) => {
   axios.get(`https://api.github.com/users/${user}`)
   .then(({data})=> {
-   const entryPoint = document.querySelector('.cards') 
+   const entryPoint = document.querySelector('.cards'); 
    entryPoint.appendChild(gitHubCardMarker({data}));
  })
    .catch(error => console.log(error));
@@ -105,8 +105,8 @@ const followersArray = [
 ];
 
 followersArray.forEach(user => {
-  gitHudInfo(user)
-})
+  gitHudInfo(user);
+});
 /***********************************************************************************
  / const followersArray = [];
 // const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
@@ -128,26 +128,27 @@ followersArray.forEach(user => {
 function gitHubCardMarker({data})
  {
   
-  const user = document.createElement('div')
-  const userProfile = document.createElement('img')
-  const cardInfo = document.createElement('div')
-  const Name = document.createElement('h3')
-  const uLogin = document.createElement('p')
-  const uLocation = document.createElement('p')
-  const id = document.createElement('p')
-  const address = document.createElement('a')
-  const uFollowers = document.createElement('p')
-  const uFollowing = document.createElement('p')
-  const userBio = document.createElement('p')
+  const user = document.createElement('div');
+  const userProfile = document.createElement('img');
+  const cardInfo = document.createElement('div');
+  const Name = document.createElement('h3');
+  const uLogin = document.createElement('p');
+  const uLocation = document.createElement('p');
+  const id = document.createElement('p');
+  const address = document.createElement('a');
+  const uFollowers = document.createElement('p');
+  const uFollowing = document.createElement('p');
+  const userBio = document.createElement('p');
   
   
  
    
   
-  user.classList.add('card')
-  cardInfo.classList.add('card-info')
-  Name.classList.add('name')
-  uLogin.classList.add('user')
+  user.classList.add('card');
+  cardInfo.classList.add('card-info');
+  Name.classList.add('name');
+  uLogin.classList.add('user');
+  
   Name.textContent = `${data.name}`;
   uLogin.textContent = `${data.login}`;
   uLocation.textContent = `Location: ${data.location}`;  
@@ -156,16 +157,16 @@ function gitHubCardMarker({data})
   uFollowing.textContent = `Following: ${data.following}`;
   userBio.textContent = `Bio: ${data.bio}`;
   
-  user.appendChild(userProfile)
-  user.appendChild(cardInfo)
-  cardInfo.appendChild(uLogin)
-  cardInfo.appendChild(Name)
-  cardInfo.appendChild(uLocation)
-  cardInfo.appendChild(id)
-  cardInfo.appendChild(uFollowers)
-  cardInfo.appendChild(uFollowing)
-  cardInfo.appendChild(userBio)
-  id.appendChild(address)
+  user.appendChild(userProfile);
+  user.appendChild(cardInfo);
+  cardInfo.appendChild(uLogin);
+  cardInfo.appendChild(Name);
+  cardInfo.appendChild(uLocation);
+  cardInfo.appendChild(id);
+  cardInfo.appendChild(uFollowers);
+  cardInfo.appendChild(uFollowing);
+  cardInfo.appendChild(userBio);
+  id.appendChild(address);
   
-  return user
+  return user;
 }
