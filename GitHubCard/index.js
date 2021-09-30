@@ -127,7 +127,7 @@ followersArray.forEach(user => {
  **/
 function gitHubCardMarker({ name, avatar_url, login, location, gitHub, url, followers, following, bio})
  {
-
+    
   const user = document.createElement('div')
   const userProfile = document.createElement('img')
   const cardInfo = document.createElement('div')
@@ -136,8 +136,8 @@ function gitHubCardMarker({ name, avatar_url, login, location, gitHub, url, foll
   const uLocation = document.createElement('p')
   const id = document.createElement('p')
   const address = document.createElement('a')
-  const userFollowers = document.createElement('p')
-  const userFollowing = document.createElement('p')
+  const uFollowers = document.createElement('p')
+  const uFollowing = document.createElement('p')
   const userBio = document.createElement('p')
 
   
@@ -152,8 +152,8 @@ function gitHubCardMarker({ name, avatar_url, login, location, gitHub, url, foll
   uLocation.textContent =location
   id.textContent = gitHub
   address.textContent = url
-  userFollowers.textContent = followers
-  userFollowing.textContent = following
+  uFollowers.textContent = followers
+  uFollowing.textContent = following
   userBio.textContent = bio
   
   user.appendChild(userProfile)
@@ -162,8 +162,8 @@ function gitHubCardMarker({ name, avatar_url, login, location, gitHub, url, foll
   cardInfo.appendChild(Name)
   cardInfo.appendChild(uLocation)
   cardInfo.appendChild(id)
-  cardInfo.appendChild(userFollowers)
-  cardInfo.appendChild(userFollowing)
+  cardInfo.appendChild(uFollowers)
+  cardInfo.appendChild(uFollowing)
   cardInfo.appendChild(userBio)
   id.appendChild(address)
   
